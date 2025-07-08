@@ -1,21 +1,33 @@
-class CartPage {
+class cartPage {
+    get title() { return '.title'; }
+    get cartItems() { return '.cart_item'; }
+    get checkoutButton() { return '#checkout'; }
+    get continueShoppingButton() { return '#continue-shopping'; }
+    get removeButton() { return '.cart_button'; }
 
-    getAllProductName(){
-        return cy.get('div.cart_item div.cart_item_label a:nth-child(1) div.inventory_item_name');
+    getTitle() {
+        return cy.get(this.title);
     }
 
-    getProductQty(){
-        return cy.get('div.cart_quantity');
+    getCartItem(productName) {
+        return cy.contains('.inventory_item_name', productName).parents('.cart_item');
     }
 
-    getCheckoutBtn(){
-        return cy.get('.btn_action');
+    getNumberOfCartItems() {
+        return cy.get(this.cartItems);
     }
 
-    getCheckoutHeader(){
-        return cy.get('.subheader')
+    clickCheckout() {
+        cy.get(this.checkoutButton).click();
     }
 
+    clickContinueShopping() {
+        cy.get(this.continueShoppingButton).click();
+    }
+
+    removeProductFromCart(productName) {
+        this.getCartItem(productName).find(this.removeButton).click();
+    }
 }
 
-export default CartPage;
+export default cartPage;

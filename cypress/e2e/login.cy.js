@@ -1,36 +1,49 @@
+// Importamos las Page Objects necesarias para las pruebas
+import LoginPage from '../pages/loginPage';
+import ProductsPage from '../pages/inventoryPage';
 
-import loginPage from '../../support/pageObjects/loginPage';
-import HomePage from '../../support/pageObjects/HomePage';
-import CartPage from '../../support/pageObjects/CartPage';
-
-describe('Tests de login', () => {
+describe('Login Feature Tests', () => {
+    // Instanciamos las Page Objects una vez por suite para reutilizarlas
+    const loginPage = new LoginPage();
+    const productsPage = new ProductsPage();
 
     beforeEach(() => {
-        cy.clearCookies();
-        cy.clearLocalStorage();
-        cy.visit('/');
-  }); 
-  
+        loginPage.visit();
+    });
 
-  it('LOGIN-001 Inicio de sesión exitoso con usuario válido (standard_user)', () => {
-    loginPage.login('standard_user', 'secret_sauce');
+    it('should allow a standard user to log in successfully', () => {
+        loginPage.login('standard_user', 'secret_sauce');
+        productsPage.getTitle().should('contain', 'Products');
+        cy.url().should('include', '/inventory.html');
+    });
 
-  });
+    it('should display an error for locked out user', () => {
+        loginPage.login('locked_out_user', 'secret_sauce');
+        loginPage.getErrorMessageText().should('eq', 'Epic sadface: Sorry, this user has been locked out.');
+    });
 
-    it('LOGIN-002 Inicio de sesión fallido con contrasena incorrecta.', () => {
-    loginPage.login('standard_user', 'password_incorrecta');
+    it('should display an error for invalid username', () => {
+        loginPage.login('invalid_user', 'secret_sauce');
+        loginPage.getErrorMessageText().should('eq', 'Epic sadface: Username and password do not match any user in this service');
+    });
 
-  });
+    it('should display an error for invalid password', () => {
+        loginPage.login('standard_user', 'wrong_password');
+        loginPage.getErrorMessageText().should('eq', 'Epic sadface: Username and password do not match any user in this service');
+    });
 
-  it('LOGIN-003 Inicio de sesión fallido con usuario incorrecto/no registrado.', () => {
-    loginPage.login('juan_cito', 'secreto_secreto_shh');
+    it('should display an error for empty username', () => {
+        loginPage.typePassword('secret_sauce');
+        loginPage.clickLogin();
+        loginPage.getErrorMessageText().should('eq', 'Epic sadface: Username is required');
+    });
 
-  });
-
-it('LOGIN-004 Caso Borde: Inicio de sesión fallido con campos vacíos (ambos).', () => {
-    loginPage.login('', '');
-
-  });
+    it('should display an error for empty password', () => {
+        loginPage.typeUsername('standard_user');
+        loginPage.clickLogin();
+        loginPage.getErrorMessageText().should('eq', 'Epic sadface: Password is required');
+    });
+});
 
 
    
