@@ -17,7 +17,6 @@ describe('Punto seis para el Challenge de Automatizacion con requests Mercado Li
 
                 // Verifico que el cuerpo de la respuesta, convertido a string, contenga la palabra clave.
                 expect(responseBody.toString()).to.include('departments');
-
             });
     });
 
