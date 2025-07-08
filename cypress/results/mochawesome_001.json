@@ -1,0 +1,204 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-08T06:53:55.673Z",
+    "end": "2025-07-08T06:54:03.671Z",
+    "duration": 7998,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ed286ea0-bdd3-4e8e-a1e1-11662c517aa8",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.cy.js",
+      "file": "cypress\\e2e\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+          "title": "Test cases de Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC-001 Usuario con credenciales validas",
+              "fullTitle": "Test cases de Login TC-001 Usuario con credenciales validas",
+              "timedOut": null,
+              "duration": 1838,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.login('standard_user', 'secret_sauce');\ninventoryPage.getTitle().should('contain', 'Products');\ncy.url().should('include', '/inventory.html');",
+              "err": {},
+              "uuid": "bd313e64-2ee2-44a7-82d8-e11d460d70c8",
+              "parentUUID": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-002 Debe mostrar un error de locked out",
+              "fullTitle": "Test cases de Login TC-002 Debe mostrar un error de locked out",
+              "timedOut": null,
+              "duration": 1381,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.login('locked_out_user', 'secret_sauce');\nloginPage.getErrorMessageText().should('eq', 'Epic sadface: Sorry, this user has been locked out.');",
+              "err": {},
+              "uuid": "539dfdee-1ff4-41c7-8c8d-d9f6dc6432ab",
+              "parentUUID": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-003 Mostrar error de usuario",
+              "fullTitle": "Test cases de Login TC-003 Mostrar error de usuario",
+              "timedOut": null,
+              "duration": 1082,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.login('invalid_user', 'secret_sauce');\nloginPage.getErrorMessageText().should('eq', 'Epic sadface: Username and password do not match any user in this service');",
+              "err": {},
+              "uuid": "26d1ceb2-68d4-4bcd-a121-a18fdaf30059",
+              "parentUUID": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-004 Mostrar error de password invalido",
+              "fullTitle": "Test cases de Login TC-004 Mostrar error de password invalido",
+              "timedOut": null,
+              "duration": 1422,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.login('standard_user', 'wrong_password');\nloginPage.getErrorMessageText().should('eq', 'Epic sadface: Username and password do not match any user in this service');",
+              "err": {},
+              "uuid": "80673326-0986-4ce2-961c-4057ac328cea",
+              "parentUUID": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-005 Mostrar error de usuario vacio",
+              "fullTitle": "Test cases de Login TC-005 Mostrar error de usuario vacio",
+              "timedOut": null,
+              "duration": 837,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.typePassword('secret_sauce');\nloginPage.clickLogin();\nloginPage.getErrorMessageText().should('eq', 'Epic sadface: Username is required');",
+              "err": {},
+              "uuid": "bbd0b81f-f91c-4176-b529-a9789c48dbe8",
+              "parentUUID": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-006 Mostrar error de password vacio",
+              "fullTitle": "Test cases de Login TC-006 Mostrar error de password vacio",
+              "timedOut": null,
+              "duration": 854,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.typeUsername('standard_user');\nloginPage.clickLogin();\nloginPage.getErrorMessageText().should('eq', 'Epic sadface: Password is required');",
+              "err": {},
+              "uuid": "19b3c7aa-463c-4bae-9342-612fff929b63",
+              "parentUUID": "8073f4e1-69b6-450d-af96-18c45aedd2bf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bd313e64-2ee2-44a7-82d8-e11d460d70c8",
+            "539dfdee-1ff4-41c7-8c8d-d9f6dc6432ab",
+            "26d1ceb2-68d4-4bcd-a121-a18fdaf30059",
+            "80673326-0986-4ce2-961c-4057ac328cea",
+            "bbd0b81f-f91c-4176-b529-a9789c48dbe8",
+            "19b3c7aa-463c-4bae-9342-612fff929b63"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7414,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "charts": true,
+        "reportPageTitle": "'SauceDemo - Reporte de Pruebas Automatizadas'",
+        "embeddedScreenshots": true,
+        "inlineAssets": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
