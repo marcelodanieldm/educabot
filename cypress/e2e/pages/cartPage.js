@@ -1,4 +1,5 @@
-class cartPage {
+class CartPage {
+    //selectores de cart
     get title() { return '.title'; }
     get cartItems() { return '.cart_item'; }
     get checkoutButton() { return '#checkout'; }
@@ -30,4 +31,4 @@ class cartPage {
     }
 }
 
-export default cartPage;
+export default CartPage;

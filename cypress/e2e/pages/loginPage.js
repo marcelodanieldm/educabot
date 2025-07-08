@@ -1,4 +1,4 @@
-class loginPage {
+class LoginPage {
     // selectores de login.
     get usernameInput() { return '#user-name'; }
     get passwordInput() { return '#password'; }
@@ -33,4 +33,4 @@ class loginPage {
     }
 }
 
-export default loginPage;
+export default LoginPage;

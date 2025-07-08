@@ -1,11 +1,12 @@
-// Importamos las Page Objects necesarias para las pruebas
-import LoginPage from '../pages/loginPage';
-import ProductsPage from '../pages/inventoryPage';
+// Importamos los Page Objects necesarias para las pruebas
+import LoginPage from './pages/loginPage';
+import InventoryPage from './pages/inventoryPage'
+import CartPage from './pages/cartPage';
 
-describe('Login Feature Tests', () => {
+describe('Test cases de Login', () => {
     // Instanciamos las Page Objects una vez por suite para reutilizarlas
     const loginPage = new LoginPage();
-    const productsPage = new ProductsPage();
+    const inventoryPage = new InventoryPage();
 
     beforeEach(() => {
         loginPage.visit();
@@ -13,7 +14,7 @@ describe('Login Feature Tests', () => {
 
     it('should allow a standard user to log in successfully', () => {
         loginPage.login('standard_user', 'secret_sauce');
-        productsPage.getTitle().should('contain', 'Products');
+        inventoryPage.getTitle().should('contain', 'Products');
         cy.url().should('include', '/inventory.html');
     });
 
@@ -46,4 +47,3 @@ describe('Login Feature Tests', () => {
 });
 
 
-   

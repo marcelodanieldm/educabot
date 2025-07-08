@@ -1,4 +1,5 @@
-class inventoryPage {
+class InventoryPage {
+    //selectores de inventory
     get title() { return '.title'; }
     get shoppingCartIcon() { return '.shopping_cart_link'; }
     get addToCartButton() { return '.btn_primary'; }
@@ -30,4 +31,4 @@ class inventoryPage {
     }
 }
 
-export default inventoryPage;
+export default InventoryPage;
