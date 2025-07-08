@@ -12,34 +12,34 @@ describe('Test cases de Login', () => {
         loginPage.visit();
     });
 
-    it('should allow a standard user to log in successfully', () => {
+    it('TC-001 Usuario con credenciales validas', () => {
         loginPage.login('standard_user', 'secret_sauce');
         inventoryPage.getTitle().should('contain', 'Products');
         cy.url().should('include', '/inventory.html');
     });
 
-    it('should display an error for locked out user', () => {
+    it('TC-002 Debe mostrar un error de locked out', () => {
         loginPage.login('locked_out_user', 'secret_sauce');
         loginPage.getErrorMessageText().should('eq', 'Epic sadface: Sorry, this user has been locked out.');
     });
 
-    it('should display an error for invalid username', () => {
+    it('TC-003 Mostrar error de usuario', () => {
         loginPage.login('invalid_user', 'secret_sauce');
         loginPage.getErrorMessageText().should('eq', 'Epic sadface: Username and password do not match any user in this service');
     });
 
-    it('should display an error for invalid password', () => {
+    it('TC-004 Mostrar error de password invalido', () => {
         loginPage.login('standard_user', 'wrong_password');
         loginPage.getErrorMessageText().should('eq', 'Epic sadface: Username and password do not match any user in this service');
     });
 
-    it('should display an error for empty username', () => {
+    it('TC-005 Mostrar error de usuario vacio', () => {
         loginPage.typePassword('secret_sauce');
         loginPage.clickLogin();
         loginPage.getErrorMessageText().should('eq', 'Epic sadface: Username is required');
     });
 
-    it('should display an error for empty password', () => {
+    it('TC-006 Mostrar error de password vacio', () => {
         loginPage.typeUsername('standard_user');
         loginPage.clickLogin();
         loginPage.getErrorMessageText().should('eq', 'Epic sadface: Password is required');

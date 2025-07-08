@@ -3,7 +3,7 @@ import LoginPage from './pages/loginPage';
 import CartPage from './pages/cartPage';
 import InventoryPage from './pages/inventoryPage';
 
-describe('Cart Feature Tests', () => {
+describe('Test de Carrito de compra', () => {
     // Instanciamos las Page Objects
     const loginPage = new LoginPage();
     const inventoryPage = new InventoryPage();
@@ -15,7 +15,7 @@ describe('Cart Feature Tests', () => {
         inventoryPage.getTitle().should('contain', 'Products');
     });
 
-    it('should add a single item to the cart', () => {
+    it('TC-001 Agregar un solo producto al carrito', () => {
         const productName = 'Sauce Labs Backpack';
         inventoryPage.addProductToCart(productName);
         inventoryPage.getCartBadgeCount().should('have.text', '1');
@@ -24,7 +24,7 @@ describe('Cart Feature Tests', () => {
         cartPage.getNumberOfCartItems().should('have.length', 1);
     });
 
-    it('should add multiple items to the cart', () => {
+    it('TC-002 Agregar mas de un producto al carrito', () => {
         const product1 = 'Sauce Labs Backpack';
         const product2 = 'Sauce Labs Bike Light';
         inventoryPage.addProductToCart(product1);
@@ -36,7 +36,7 @@ describe('Cart Feature Tests', () => {
         cartPage.getNumberOfCartItems().should('have.length', 2);
     });
 
-    it('should remove an item from the cart from the products page', () => {
+    it('TC-003 remover un producto del carrito', () => {
         const productName = 'Sauce Labs Backpack';
         inventoryPage.addProductToCart(productName);
         inventoryPage.getCartBadgeCount().should('have.text', '1');
@@ -44,7 +44,7 @@ describe('Cart Feature Tests', () => {
         cy.get(inventoryPage.cartBadge).should('not.exist'); // Accedemos directamente al selector
     });
 
-    it('should remove an item from the cart from the cart page', () => {
+    it('TC-004 remover un producto de la pagina de cart', () => {
         const product1 = 'Sauce Labs Backpack';
         const product2 = 'Sauce Labs Bike Light';
         inventoryPage.addProductToCart(product1);
@@ -59,7 +59,7 @@ describe('Cart Feature Tests', () => {
         inventoryPage.getCartBadgeCount().should('have.text', '1');
     });
 
-    it('should proceed to checkout from the cart page', () => {
+    it('TC-005 checkout de la pagina step 1 e informacion', () => {
         const productName = 'Sauce Labs Backpack';
         inventoryPage.addProductToCart(productName);
         inventoryPage.clickShoppingCart();
@@ -68,7 +68,7 @@ describe('Cart Feature Tests', () => {
         cy.get('.title').should('contain', 'Checkout: Your Information');
     });
 
-    it('should navigate back to products from cart page', () => {
+    it('TC-006 volver atras desde la pagina del carrito', () => {
         const productName = 'Sauce Labs Backpack';
         inventoryPage.addProductToCart(productName);
         inventoryPage.clickShoppingCart();
